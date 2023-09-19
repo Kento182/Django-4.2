@@ -1,0 +1,17 @@
+1.- Crear una imagen de docker
+    docker build -t nombre-de-la-imagen .
+-t para poner un nombre y . para que se cree en el directorio local
+--no-cache
+
+2.- Crear y ejecutar un contenedor
+    docker run nombre-de-la-imagen
+
+3.- docker-compose up               #Levantar contenedor
+    docker-compose up -d            #Corre en segundo plano
+    docker-compose up -d --build    #Reconstruir contenedor
+
+4.- docker-compose down             #Cerrar contenedor
+
+5.- docker-compose logs             #Ver ultimos mensajes
+
+6.- docker-compose exec nombre_servicio comando_a_ejecutar
