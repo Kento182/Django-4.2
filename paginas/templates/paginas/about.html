@@ -3,7 +3,15 @@
 {% block titulo %}Acerca de la APP{% endblock titulo %}
 
 {% block contenido %}
-<div class="text-info">
-    Aplicacion Elaborada para el Curso de Django para Profecionales
-</div>
+
+{% include 'fragments/titulo.html' with titulo="Acerca de..." %}
+
+    {% include 'fragments/card_start.html' with header="Acerca de..." %}
+    <h4 class="card-title">Secondary card title</h4>
+    <p class="card-text">
+      Some quick example text to build on the card title and make up the bulk of
+      the card's content.
+    </p>
+    {% include 'fragments/card_finish.html' %}
+  
 {% endblock contenido %}
