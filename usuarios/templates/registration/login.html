@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+{% include 'fragments/titulo.html' with titulo="Login" %}
+
+    {% include 'fragments/card_start.html' with header="Indica Credenciales de Acceso" %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Acceder</button>
+    </form>
+    {% include 'fragments/card_finish.html' %}
+  
+{% endblock contenido %}
