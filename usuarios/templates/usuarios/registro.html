@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+{% include 'fragments/titulo.html' with titulo="Nuevo Usuario" %}
+
+    {% include 'fragments/card_start.html' with header="Registro de Usuario" %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Registrar</button>
+    </form>
+    {% include 'fragments/card_finish.html' %}
+{% endblock contenido %}
