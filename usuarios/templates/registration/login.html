@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
 {% block contenido %}
 
@@ -7,7 +8,7 @@
     {% include 'fragments/card_start.html' with header="Indica Credenciales de Acceso" %}
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type="submit">Acceder</button>
     </form>
     {% include 'fragments/card_finish.html' %}
