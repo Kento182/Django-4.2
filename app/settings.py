@@ -43,6 +43,13 @@ INSTALLED_APPS = [
     'bases',
     'usuarios',
     'paginas',
+    # All Auth
+    'django.contrib.sites', 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +147,14 @@ LOGOUT_REDIRECT_URL = 'core:home'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+AUTHENTICATION_BACKENDS = [
+    # Si utilizamos el login de Django
+    'django.contrib.auth.backends.ModelBackend',
+    # Utilizando ALLAUTH
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITES_ID = 1
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'

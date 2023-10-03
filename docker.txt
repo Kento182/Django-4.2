@@ -15,3 +15,5 @@
 5.- docker-compose logs             #Ver ultimos mensajes
 
 6.- docker-compose exec nombre_servicio comando_a_ejecutar
+
+7.- docker image rm IMAGE_ID        #Eliminar imagenes

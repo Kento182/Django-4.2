@@ -5,3 +5,4 @@ tzdata==2023.3
 psycopg[binary]
 django-crispy-forms==1.13
 crispy-bootstrap5==0.7
+django-allauth==0.57.0

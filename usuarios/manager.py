@@ -20,7 +20,7 @@ class CustomUserManager(BaseUserManager):
             last_login = now,
             **kwargs
             )
-        user.setpassword(password)
+        user.set_password(password)
         user.save(using=self._db)
         return user
         
