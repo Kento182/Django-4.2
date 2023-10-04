@@ -5,8 +5,9 @@
 {% include 'fragments/titulo.html' with titulo="Login" %}
 
     {% include 'fragments/card_start.html' with header="Indica Credenciales de Acceso 2" %}
-    <form method="post">
-        {% csrf_token %}
+    <form hx-post="{% url 'usuarios:login' %}" hx-target="#body"
+        hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
+        {#% csrf_token %#}
         {{ form.as_p }}
         <button type="submit">Acceder</button>
     </form>
