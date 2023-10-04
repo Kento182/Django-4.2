@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     # local
     'bases',
     'usuarios',
-    'paginas',    
+    'paginas',
+    'ctrl_comb',
 ]
 
 MIDDLEWARE = [
