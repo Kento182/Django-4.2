@@ -1,3 +1,7 @@
+{% load socialaccount %}
+{% providers_media_js %}
+
+
 <div class="bs-docs-section clearfix">
     <div class="row">
         <div class="bs-component">
@@ -37,6 +41,7 @@
                       {% else %}
                         <a href="{% url 'usuarios:login' %}">Login</a>
                         |<a href="{% url 'usuarios:registro' %}">Regsitro</a>
+                        |<a href="{% provider_login_url 'google' %}?next=/">Google</a>
                       {% endif %}
                     </div>                            
                   </div>

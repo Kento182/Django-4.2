@@ -37,12 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
-    'crispy_bootstrap5',
-    # local
-    'bases',
-    'usuarios',
-    'paginas',
     # All Auth
     'django.contrib.sites', 
     'allauth',
@@ -50,6 +44,13 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    
+    'crispy_forms',
+    'crispy_bootstrap5',
+    # local
+    'bases',
+    'usuarios',
+    'paginas',    
 ]
 
 MIDDLEWARE = [
@@ -156,6 +157,18 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITES_ID = 1
+SITE_ID = 1
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email'
+        ],
+        'AUTH_PARAMS': {
+            'access_type':'online'
+        }
+    }
+}
