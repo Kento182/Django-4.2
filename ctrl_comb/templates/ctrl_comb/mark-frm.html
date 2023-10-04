@@ -1,0 +1,33 @@
+<form hx-post = "{% url 'control:mark_save' %}" hx-target="#list"
+ class="d-flex align-item-center" method="POST">
+    <fieldset>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="id" class="form-label">Id</label>
+                    <input type="text" class="form-control" id="id" aria-describedby="idhelp"
+                    name="id" placeholder="id" readonly value="{{obj.id}}">
+                    <small id="idthelp" class="form-text text-muted">Id</small>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="descript" class="form-label">Descripción</label>
+                    <input type="text" class="form-control" id="descript" aria-describedby="idhelp"
+                    name="descript" placeholder="Descripción" value="{{obj.descript}}">
+                    <small id="descripthelp" class="form-text text-muted">Descripción</small>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success btn-sm">Guardar</button>
+            </div>
+            <div class="col-md-6">
+                <button type="button" class="btn btn-info btn-sm"
+                hx-get="{% url 'control:mark_list' %}" hx-target="#body"
+                >Limpiar</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

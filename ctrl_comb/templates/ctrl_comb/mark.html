@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+{% include 'fragments/titulo.html' with titulo="Marca Vehiculo" %}
+
+    {% include 'fragments/card_start.html' with header="" %}
+    <div class="row">
+      <div class="col-md-6">
+          <div id="frm">
+              {% include 'ctrl_comb/mark-frm.html' %}
+          </div>
+      </div>
+      <div class="col-md-6">
+          <div id="list">
+              {% include 'ctrl_comb/mark-list.html' %}
+          </div>
+      </div>
+    </div>          
+    {% include 'fragments/card_finish.html' %}
+  
+{% endblock contenido %}

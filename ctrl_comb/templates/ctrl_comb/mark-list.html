@@ -1,0 +1,36 @@
+{% if obj %}
+<table class="table table-striped table-hover">
+    <thead>
+        <th>ID</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+    </thead>
+    <tbody>
+        {% for o in obj %}
+        <tr>
+            <td>{{o.id}}</td>
+            <td>{{o.descript}}</td>
+            <td>
+                <i class="bi bi-trash3"
+                style="cursor: pointer;"
+                hx-delete="{% url 'control:mark_delete' o.id %}"
+                hx-target="#list"
+                hx-confirm="¿Seguro que desea eliminar el registro?"
+                ></i>
+                <i class="bi bi-pencil-square"
+                style="cursor: pointer;"
+                hx-get="{% url 'control:mark_edit' o.id %}"
+                hx-target="#frm"
+                ></i>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>No hay registros</p>
+{% endif %}
+
+<input type="text" class="form-control" id="id" aria-describedby="idhelp"
+                    name="id" placeholder="id" readonly value="{{reg.id}}"
+                    hx-swap-oob="true">
