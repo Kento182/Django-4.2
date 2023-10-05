@@ -13,7 +13,7 @@
             <td>
                 <i class="bi bi-trash3"
                 style="cursor: pointer;"
-                hx-delete="{#% url 'control:mark_delete' o.id %#}"
+                hx-delete="{% url 'control:mark_delete' o.id %}"
                 hx-target="#list"
                 hx-confirm="¿Seguro que desea eliminar el registro?"
                 ></i>
