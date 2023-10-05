@@ -31,7 +31,12 @@
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catálogos</a>
                         <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">Marcas</a>
+                          <a class="dropdown-item" href="#"
+                            hx-get="{% url 'control:mark_list' %}"
+                            hx-triger="click" hx-target="#body"
+                            hx-push-url="true"
+                            style="cursor: pointer;"
+                          >Marcas</a>
                           <a class="dropdown-item" href="#">Modelos</a>
                           <a class="dropdown-item" href="#">Vehículos</a>
                           <div class="dropdown-divider"></div>
