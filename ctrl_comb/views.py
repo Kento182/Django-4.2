@@ -32,8 +32,9 @@ def mark_save(request):
         else:                 
             o = Mark.objects.create(decript = d)
             
-    obj = Mark.objects.all().order_by("decript")
+    obj = Mark.objects.all().order_by("decript")    
     context["obj"] = obj
+    context["reg"] = o  # type: ignore
     
     return render(request, template_name, context)
 
