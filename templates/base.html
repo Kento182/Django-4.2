@@ -10,6 +10,11 @@
         <!-- Icons -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
+        <!-- DataTables -->
+        <link rel="stylesheet" href="{% static 'plugins/datatable/datatables.min.css' %}">
+        <link rel="stylesheet" href="{% static 'plugins/datatable/Responsive-2.5.0/css/responsive.bootstrap5.min.css' %}">
+
+
     </head>
     <body id="body" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
         <!-- Menu -->
@@ -28,6 +33,10 @@
         <script src="{% static 'js/bootstrap.min.js' %}"></script>
         {% comment %} <script src="https://unpkg.com/htmx.org@1.9.6" integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni" crossorigin="anonymous"></script> {% endcomment %}
         <script src="{% static 'js/htmx.js' %}"></script>
+
+        <!-- Datatables -->
+        <script src="{% static 'plugins/datatable/datatables.min.js' %}"></script>
+        <script src="{% static 'plugins/datatable/Buttons-2.4.2/js/buttons.bootstrap5.min.js' %}"></script>
         
     </body>
 </html>
