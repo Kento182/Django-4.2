@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block contenido %}
 
@@ -20,3 +21,15 @@
     {% include 'fragments/card_finish.html' %}
   
 {% endblock contenido %}
+
+{% block js %}
+<script>
+    $(function(){
+        $("#tbl").DataTable({
+            language:{
+                url: "{% static 'plugins/datatable/es-MX.json' %}"
+            }
+        })
+    })
+</script>
+{% endblock js %}
