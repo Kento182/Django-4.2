@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.urls import reverse_lazy
 
 from .models import *
@@ -80,4 +80,12 @@ class ModeloNew(CreateView):
     model=Modelo
     context_object_name="obj"
     form_class=ModeloForm
-    success_url=reverse_lazy("control:modelo_list")    
+    success_url=reverse_lazy("control:modelo_list")
+    
+
+class ModeloEdit(UpdateView):
+    template_name="ctrl_comb/modelo_form.html"
+    model=Modelo
+    context_object_name="obj"
+    form_class=ModeloForm
+    success_url=reverse_lazy("control:modelo_list")
