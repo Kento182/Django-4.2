@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
 from .models import *
@@ -88,4 +88,11 @@ class ModeloEdit(UpdateView):
     model=Modelo
     context_object_name="obj"
     form_class=ModeloForm
+    success_url=reverse_lazy("control:modelo_list")
+    
+
+class ModeloDelete(DeleteView):
+    template_name="bases/delete.html"
+    model=Modelo
+    context_object_name="obj"    
     success_url=reverse_lazy("control:modelo_list")

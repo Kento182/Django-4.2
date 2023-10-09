@@ -20,6 +20,7 @@
             <tr>
                 <th>
                     <a href="{% url 'control:modelo_edit' o.id %}" class="btn btn-info btn-sm"><i class="bi bi-pencil-square"></i> Editar</a>
+                    <a href="{% url 'control:modelo_delete' o.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Borrar</a>
                 </th>
                 <th>{{ o.mark }}</th>
                 <th>{{ o.descript }}</th>
