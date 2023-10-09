@@ -14,3 +14,9 @@ class MarkForm(forms.ModelForm):
             self.fields[field].widget.attrs.update({
                 'class':'form-control'
             })
+            
+            
+class ModeloForm(forms.ModelForm):
+    class Meta:
+        model = Modelo
+        fields = ["mark","descript"]

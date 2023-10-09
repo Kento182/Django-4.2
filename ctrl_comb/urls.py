@@ -8,4 +8,5 @@ urlpatterns = [
     path('mark/edit/<int:pk>', mark_edit, name="mark_edit"),
     
     path('models/', ModeloList.as_view(), name="modelo_list"),
+    path('models/new', ModeloNew.as_view(), name="modelo_new"),
 ]

@@ -5,6 +5,7 @@
 {% include 'fragments/titulo.html' with titulo="Modelos de Vehiculo" %}
 
     {% include 'fragments/card_start.html' with header="Listado de Modelos de Vehículos" %}
+    <a href="{% url 'control:modelo_new' %}" class="btn btn-sm btn-warning"><i class="bi bi-plus-circle"> Nuevo</i></a>
     <table id="tbl" class="table table-striped table-hover">
         <thead>
             <tr>
