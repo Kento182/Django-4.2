@@ -23,7 +23,7 @@
 {% endblock contenido %}
 
 {% block js %}
-<script>
+{% comment %} <script>
     $(function(){
         $("#tbl").DataTable({
             language:{
@@ -31,5 +31,5 @@
             }
         })
     })
-</script>
+</script> {% endcomment %}
 {% endblock js %}

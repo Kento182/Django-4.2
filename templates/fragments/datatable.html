@@ -1,0 +1,11 @@
+{% load static %}
+
+<script>
+    $(function(){
+        $("#tbl").DataTable({
+            language:{
+                url: "{% static 'plugins/datatable/es-MX.json' %}"
+            }
+        })
+    })
+</script>

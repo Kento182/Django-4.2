@@ -65,3 +65,10 @@ def mark_edit(request, pk=None):
     context["form"] = frm
     context["obj"] = o  # type: ignore
     return render(request, template_name, context)
+
+
+class ModeloList(ListView):
+    template_name="ctrl_comb/modelo.html"
+    model=Modelo
+    context_object_name="obj"
+    ordering=["mark","descript"]
