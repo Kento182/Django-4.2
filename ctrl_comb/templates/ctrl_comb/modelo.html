@@ -6,6 +6,9 @@
 
     {% include 'fragments/card_start.html' with header="Listado de Modelos de Vehículos" %}
     <a href="{% url 'control:modelo_new' %}" class="btn btn-sm btn-warning"><i class="bi bi-plus-circle"></i> Nuevo</a>
+    <button type="button" class="btn btn-success btn-sm" onclick="abrir_modal('{% url 'control:modelo_new_modal' %}')">
+        <i class="bi bi-plus-square"></i>
+    </button>
     <table id="tbl" class="table table-striped table-hover">
         <thead>
             <tr>
@@ -23,6 +26,9 @@
                     <a href="{% url 'control:modelo_delete' o.id %}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i> Borrar</a>
                     <button type="button" class="btn btn-danger btn-sm" onclick="borrar({{ o.id }},'{{ o.descript }}')">
                         <i class="bi bi-trash3"></i>
+                    </button>
+                    <button type="button" class="btn btn-success btn-sm" onclick="abrir_modal('{% url 'control:modelo_edit_modal' o.id %}')">
+                        <i class="bi bi-pencil-square"></i>
                     </button>
                 </td>
                 <td>{{ o.mark }}</td>

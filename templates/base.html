@@ -27,6 +27,8 @@
             </div>
         </div>
 
+        <div id="popup" class="modal fade"></div>
+
         <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.7/umd/popper.min.js" integrity="sha512-uaZ0UXmB7NHxAxQawA8Ow2wWjdsedpRu7nJRSoI2mjnwtY8V5YiCWavoIpo1AhWPMLiW5iEeavmA3JJ2+1idUg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
@@ -39,7 +41,23 @@
         <script src="{% static 'plugins/datatable/Buttons-2.4.2/js/buttons.bootstrap5.min.js' %}"></script>
 
         <!-- Sweetalert -->
-        <script src="{% static 'js/sweetalert.js' %}"></script>        
+        <script src="{% static 'js/sweetalert.js' %}"></script>
+
+        <script>
+            function abrir_modal(url){
+                $("#popup").load(url,function(){
+                    $(this).modal({
+                        backdrop:"static",
+                        keyboard:false
+                    })
+                    $(this).modal('show')
+                })
+            }
+            function cerrar_modal(){
+                $("#popup").modal("hide")
+                return false
+            }
+        </script>
 
         {% block js %}        
         {% endblock js %}
