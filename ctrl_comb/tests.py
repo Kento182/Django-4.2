@@ -17,10 +17,11 @@ class ModeloTest(TestCase):
         self.assertEqual(self.modelo.mark.decript,"Toyota")
         
     # def test_vista_modelo(self):
-    #     response = self.client.get(reverse("control:modelo_list"))        
-    #     self.assertEqual(response.status_code,200)        
+    #     response = self.client.get(reverse("control:modelo_list"))
+    #     self.assertEqual(response.status_code,200)
     #     self.assertContains(response,"Rush")
     #     self.assertTemplateUsed(response,"ctrl_comb/modelo.html")
+
         
     # def test_vista_marcas(self):
     #     response = self.client.get(reverse("control:mark_list"))
