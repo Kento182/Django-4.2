@@ -144,4 +144,22 @@ def modelo_dt(request):
     reg = registros[start:start + length]
     paginator = Paginator(reg,length)
     
+    try:
+        obj = paginator.page(draw).object_list
+    except PageNotAnInteger:
+        obj = paginator.page(draw).object_list
+    except EmptyPage:
+        obj = paginator.page(paginator.num_pages).object_list
+        
+    # datos = []
+    # for o in obj:
+    #     datos.append({"id":o.id, "mark":o.mark.decript, "descript":o.descript})
     
+    datos = [
+        {
+            "id" : o.id, "mark":o.mark.decript, "descript":o.descript
+        } for o in obj
+    ]
+    
+    context["datos"] = datos
+    return JsonResponse(context,safe=False)
