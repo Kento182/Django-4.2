@@ -1,8 +1,9 @@
 {% load static %}
 
 <script>
+    let tbl
     $(function(){
-        $("#tbl").DataTable({
+        tbl=$("#tbl").DataTable({
             language:{
                 url: "{% static 'plugins/datatable/es-MX.json' %}"
             },

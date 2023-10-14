@@ -68,7 +68,8 @@
                         if(xhr.status==200){
                             Swal.fire('Borrado',`${d} Borrado satisfactoriamente`,'success').then(
                                 function(){
-                                    location.reload()
+                                    //location.reload()
+                                    tbl.ajax.reload()
                                 }
                             )
                         }
@@ -80,5 +81,28 @@
             }
             })
         }
+
+        $("#tbl").on("click","td.editor-delete",function(e){
+            e.preventDefault()
+            let rows = tbl.rows(this).data()
+            //console.log(rows)
+            let row = rows[0]
+            //console.log(row.id)
+            let id = row.id
+            let descript = row.descript
+            borrar(id, descript)
+        })
+
+        $("#tbl").on("click","td.editor-edit",function(e){
+            e.preventDefault()
+            let rows = tbl.rows(this).data()
+            //console.log(rows)
+            let row = rows[0]
+            //console.log(row.id)
+            let id = row.id
+            let url = `/control/models/edit-modal/${id}`
+            //alert(url)
+            abrir_modal(url)
+        })
     </script>
 {% endblock js %}
