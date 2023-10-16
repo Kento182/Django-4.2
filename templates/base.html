@@ -75,7 +75,10 @@
                         orderable:false
                     }
                 {% endblock dtColumnsActions %}]
-            let tblUrl ="{% block dtUrl %}/{% endblock dtUrl %}"
+            let tblUrl = "{% block dtUrl %}/{% endblock dtUrl %}"
+            let dtUrlEdit = "{% block dtUrlEdit %}/{% endblock dtUrlEdit %}"
+            let dtUrlDelete = "{% block dtUrlDelete %}/{% endblock dtUrlDelete %}"
+            let dtDescDelete = "{% block dtDescDelete %}descript,{% endblock dtDescDelete %}"
         </script>
 
         {% include "fragments/datatable.html" %}
