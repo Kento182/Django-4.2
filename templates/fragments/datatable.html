@@ -3,28 +3,15 @@
 <script>
     let tbl
     $(function(){
-        tbl=$("#tbl").DataTable({
+        tbl=$(tblName).DataTable({
             language:{
                 url: "{% static 'plugins/datatable/es-MX.json' %}"
             },
             ajax:{
-                url: "{% url 'control:modelo_dt' %}",
+                url: tblUrl,
                 dataSrc: "datos"
             },
-            columns:[
-                { data:"mark" },
-                { data:"descript" },
-                { data:null, 
-                    className:"dt-center editor-edit text-success",
-                    defaultContent: '<i class="bi bi-pencil-square"></i>',
-                    orderable:false
-                },
-                { data:null, 
-                    className:"dt-center editor-delete text-danger",
-                    defaultContent: '<i class="bi bi-trash3"></i>',
-                    orderable:false
-                }
-            ],
+            columns: dtColumns,            
             dom:'Bfrtip',
             processing:true, serverSide:true, pageLength:15,            
         })

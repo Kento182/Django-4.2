@@ -43,8 +43,7 @@
   
 {% endblock contenido %}
 
-{% block js %}
-    {% include "fragments/datatable.html" %}
+{% block js %}    
 
     <script>
         function borrar(id,d)
@@ -106,3 +105,11 @@
         })
     </script>
 {% endblock js %}
+
+{% comment %} DataTable {% endcomment %}
+{% block dtName %}#tbl{% endblock dtName %}
+{% block dtColumns %}
+    { data:"mark" },
+    { data:"descript" }
+{% endblock dtColumns %}
+{% block dtUrl %}{% url 'control:modelo_dt' %}{% endblock dtUrl %}

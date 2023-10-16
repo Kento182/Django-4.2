@@ -59,6 +59,27 @@
             }
         </script>
 
+        <script>
+            let tblName = "{% block dtName %}#tbl{% endblock dtName %}"
+            let dtColumns = [{% block dtColumns %}{% endblock dtColumns %}
+                {% block dtColumnsActions %}
+                    ,
+                    { data:null, 
+                        className:"dt-center editor-edit text-success",
+                        defaultContent: '<i class="bi bi-pencil-square"></i>',
+                        orderable:false
+                    },
+                    { data:null, 
+                        className:"dt-center editor-delete text-danger",
+                        defaultContent: '<i class="bi bi-trash3"></i>',
+                        orderable:false
+                    }
+                {% endblock dtColumnsActions %}]
+            let tblUrl ="{% block dtUrl %}/{% endblock dtUrl %}"
+        </script>
+
+        {% include "fragments/datatable.html" %}
+
         {% block js %}        
         {% endblock js %}
         
