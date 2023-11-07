@@ -4,16 +4,19 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import JsonResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 from .models import *
 from .forms import *
 
 
-class MarkList(ListView):
+class MarkList(LoginRequiredMixin, ListView):
     template_name="ctrl_comb/mark.html"
     model=Mark
     context_object_name="obj"
     ordering=["decript"]
+    login_url="usuarios:login"
     
 
 def mark_save(request):
@@ -71,11 +74,12 @@ def mark_edit(request, pk=None):
     return render(request, template_name, context)
 
 
-class ModeloList(ListView):
+class ModeloList(LoginRequiredMixin ,ListView):
     template_name="ctrl_comb/modelo.html"
     model=Modelo
     context_object_name="obj"
     ordering=["mark","descript"]
+    login_url="usuarios:login"
     
     
 class ModeloNew(CreateView):
@@ -117,6 +121,7 @@ class ModeloNewModal(CreateView):
     success_url=reverse_lazy("control:modelo_list")
     
 
+@login_required(login_url="usuarios:login")
 def modelo_dt(request):
     context = {}
     datos = request.GET
