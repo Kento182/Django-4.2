@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import *
 from .forms import *
@@ -74,12 +74,13 @@ def mark_edit(request, pk=None):
     return render(request, template_name, context)
 
 
-class ModeloList(LoginRequiredMixin ,ListView):
+class ModeloList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     template_name="ctrl_comb/modelo.html"
     model=Modelo
     context_object_name="obj"
     ordering=["mark","descript"]
     login_url="usuarios:login"
+    permission_required="ctrl_comb.view_modelo"
     
     
 class ModeloNew(CreateView):
@@ -122,6 +123,7 @@ class ModeloNewModal(CreateView):
     
 
 @login_required(login_url="usuarios:login")
+@permission_required("ctrl_comb.view_modelo")
 def modelo_dt(request):
     context = {}
     datos = request.GET

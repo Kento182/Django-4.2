@@ -27,24 +27,26 @@
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Registrar</a>
-                      </li>                              
+                      </li>
+                      {% if user.is_authenticated %}
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Catálogos</a>
-                        <div class="dropdown-menu">
-                          {% if user.is_authenticated %}
+                        <div class="dropdown-menu">                          
                           <a class="dropdown-item" href="#"
                             hx-get="{% url 'control:mark_list' %}"
                             hx-triger="click" hx-target="#body"
                             hx-push-url="true"
                             style="cursor: pointer;"
                           >Marcas</a>
-                          {% endif %}
+                          {% if perms.ctrl_comb.view_modelo %}
                           <a class="dropdown-item" href="{% url 'control:modelo_list' %}">Modelos</a>
+                          {% endif %}
                           <a class="dropdown-item" href="#">Vehículos</a>
                           <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="#">Separated link</a>
                         </div>
                       </li>
+                      {% endif %}
                       <li class="nav-item">
                         <a class="nav-link" href="{% url 'pages:about' %}">Acerca de...</a>
                       </li>
