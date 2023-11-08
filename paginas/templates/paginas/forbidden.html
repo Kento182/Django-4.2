@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Sin Permisos Necesarios{% endblock titulo %}
+
+{% block contenido %}
+
+{% include 'fragments/titulo.html' with titulo="Permisos Requeridos" %}
+
+    {% include 'fragments/card_start.html' with header="Permisos Requeridos" %}
+    <h4 class="card-title">Tu usuario {{user}} no tiene permisos para ver esta opción</h4>
+    <p class="card-text">Opciones:
+      <ul>
+        <li>Ir al <a href="{% url 'core:home' %}">Inicio</a></li>
+        <li>Ir al <a href="{% url 'usuarios:login' %}">Login</a></li>
+    </p>
+    {% include 'fragments/card_finish.html' %}
+  
+{% endblock contenido %}

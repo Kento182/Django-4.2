@@ -6,6 +6,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
+from django.http import HttpResponseRedirect
+from django.contrib.auth.models import AnonymousUser
 
 from .models import *
 from .forms import *
@@ -81,6 +83,20 @@ class ModeloList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     ordering=["mark","descript"]
     login_url="usuarios:login"
     permission_required="ctrl_comb.view_modelo"
+    raise_exception=False
+    redirect_field_name="redirect_to"
+    
+    def form_invalid(self, form):
+        response = super().form_invalid(form)   # type: ignore
+        if self.request.is_ajax():
+            return JsonResponse(form.errors,status=400)
+        else:
+            return response
+    
+    def handle_no_permission(self):
+        if not self.request.user == AnonymousUser():
+            self.login_url = "pages:forbidden"
+        return HttpResponseRedirect(reverse_lazy(self.login_url))
     
     
 class ModeloNew(CreateView):
