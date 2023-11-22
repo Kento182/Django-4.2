@@ -1,7 +1,9 @@
 from django.db import models
 
+from bases.models import ClaseModelo
 
-class Mark(models.Model):
+
+class Mark(ClaseModelo):
     decript = models.CharField(max_length=50, unique=True)
     
     def __str__(self):
@@ -12,7 +14,7 @@ class Mark(models.Model):
         verbose_name_plural = "Marcas"
         
 
-class Modelo(models.Model):
+class Modelo(ClaseModelo):
     descript = models.CharField(max_length=50, db_comment="Descripción del Modelo del Vehículo")    #type: ignore
     mark = models.ForeignKey(Mark, on_delete=models.PROTECT)
     
