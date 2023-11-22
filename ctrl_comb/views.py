@@ -11,14 +11,17 @@ from django.contrib.auth.models import AnonymousUser
 
 from .models import *
 from .forms import *
+from bases.views import SinAutorizacion
 
 
-class MarkList(LoginRequiredMixin, ListView):
+# class MarkList(LoginRequiredMixin, ListView):
+class MarkList(SinAutorizacion, ListView):
     template_name="ctrl_comb/mark.html"
     model=Mark
     context_object_name="obj"
     ordering=["decript"]
     login_url="usuarios:login"
+    permission_required="ctrl_comb.view_mark"
     
 
 def mark_save(request):
@@ -76,27 +79,28 @@ def mark_edit(request, pk=None):
     return render(request, template_name, context)
 
 
-class ModeloList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+# class ModeloList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
+class ModeloList(SinAutorizacion, ListView):
     template_name="ctrl_comb/modelo.html"
     model=Modelo
     context_object_name="obj"
     ordering=["mark","descript"]
     login_url="usuarios:login"
     permission_required="ctrl_comb.view_modelo"
-    raise_exception=False
-    redirect_field_name="redirect_to"
+    # raise_exception=False
+    # redirect_field_name="redirect_to"
     
-    def form_invalid(self, form):
-        response = super().form_invalid(form)   # type: ignore
-        if self.request.is_ajax():
-            return JsonResponse(form.errors,status=400)
-        else:
-            return response
+    # def form_invalid(self, form):
+    #     response = super().form_invalid(form)   # type: ignore
+    #     if self.request.is_ajax():
+    #         return JsonResponse(form.errors,status=400)
+    #     else:
+    #         return response
     
-    def handle_no_permission(self):
-        if not self.request.user == AnonymousUser():
-            self.login_url = "pages:forbidden"
-        return HttpResponseRedirect(reverse_lazy(self.login_url))
+    # def handle_no_permission(self):
+    #     if not self.request.user == AnonymousUser():
+    #         self.login_url = "pages:forbidden"
+    #     return HttpResponseRedirect(reverse_lazy(self.login_url))
     
     
 class ModeloNew(CreateView):

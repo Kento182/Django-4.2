@@ -12,7 +12,8 @@ class CustomUserTest(TestCase):
         usr = Usr.objects.create_user(
             username = "kento",
             email = "kento@gmail.com",
-            password = "123"
+            password = "123",
+            first_name = 'kento'
         )
         
         #Que esperamos
@@ -27,7 +28,8 @@ class CustomUserTest(TestCase):
         usr = Usr.objects.create_superuser(
             username = "kento",
             email = "kento@gmail.com",
-            password = "123"
+            password = "123",
+            first_name = 'kento'
         )
         
         #Que esperamos
@@ -40,8 +42,8 @@ class CustomUserTest(TestCase):
         
 class RegistroUsuarioTest(TestCase):
     def setUp(self):
-            url = reverse("usuarios:registro")
-            self.response = self.client.get(url)
+            url = reverse("usuarios:registro")            
+            self.response = self.client.get(url)            
             
     def test_plantilla_registro(self):
         self.assertEqual(self.response.status_code, 200)
