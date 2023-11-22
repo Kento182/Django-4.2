@@ -1,9 +1,10 @@
+from django.forms.models import BaseModelForm
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required, permission_required
 from django.http import HttpResponseRedirect
@@ -11,7 +12,7 @@ from django.contrib.auth.models import AnonymousUser
 
 from .models import *
 from .forms import *
-from bases.views import SinAutorizacion
+from bases.views import SinAutorizacion, MixinSaveUser
 
 
 # class MarkList(LoginRequiredMixin, ListView):
@@ -126,20 +127,40 @@ class ModeloDelete(DeleteView):
     success_url=reverse_lazy("control:modelo_list")
     
 
-class ModeloEditModal(UpdateView):
+class ModeloEditModal(SinAutorizacion, MixinSaveUser ,UpdateView):
     template_name="ctrl_comb/modelo_modal.html"
     model=Modelo
     context_object_name="obj"
     form_class=ModeloForm
     success_url=reverse_lazy("control:modelo_list")
+    login_url="usuarios:login"
+    permission_required="ctrl_comb.change_modelo"
     
+    # def form_valid(self, form):
+    #     if form.instance.id:
+    #         form.instance.um = self.request.user
+    #     else:
+    #         form.instance.uc = self.request.user
+            
+    #     return super().form_valid(form)
+        
 
-class ModeloNewModal(CreateView):
+class ModeloNewModal(SinAutorizacion, MixinSaveUser, CreateView):
     template_name="ctrl_comb/modelo_modal.html"
     model=Modelo
     context_object_name="obj"
     form_class=ModeloForm
     success_url=reverse_lazy("control:modelo_list")
+    login_url="usuarios:login"
+    permission_required="ctrl_comb.add_modelo"
+    
+    # def form_valid(self, form):
+    #     if form.instance.id:
+    #         form.instance.um = self.request.user
+    #     else:
+    #         form.instance.uc = self.request.user
+            
+    #     return super().form_valid(form)
     
 
 @login_required(login_url="usuarios:login")

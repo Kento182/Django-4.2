@@ -7,6 +7,10 @@ from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 
+class HomeView(TemplateView):
+    template_name = "bases/home.html"
+
+
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
@@ -31,5 +35,11 @@ class SinAutorizacion(LoginRequiredMixin, PermissionRequiredMixin, MixinFormInva
         return HttpResponseRedirect(reverse_lazy(self.login_url))
 
 
-class HomeView(TemplateView):
-    template_name = "bases/home.html"
+class MixinSaveUser:
+    def form_valid(self, form):
+        if form.instance.id:
+            form.instance.um = self.request.user    # type: ignore
+        else:
+            form.instance.uc = self.request.user    # type: ignore
+            
+        return super().form_valid(form) # type: ignore
