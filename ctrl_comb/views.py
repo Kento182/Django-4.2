@@ -32,6 +32,7 @@ def mark_save(request):
     if request.method == "POST":
         i = request.POST.get("id")
         d = request.POST.get("decript")
+        u = request.user
         o = None
         
         if i:
@@ -41,9 +42,10 @@ def mark_save(request):
             
         if o:
             o.decript = d   # type: ignore
+            o.um = u    # type: ignore
             o.save()    # type: ignore
         else:                 
-            o = Mark.objects.create(decript = d)
+            o = Mark.objects.create(decript = d, uc = u)
             
     obj = Mark.objects.all().order_by("decript")    
     context["obj"] = obj
