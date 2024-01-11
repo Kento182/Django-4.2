@@ -1,6 +1,6 @@
 from django.forms.models import BaseModelForm
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
 from django.urls import reverse_lazy
 from django.db.models import Q
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -208,6 +208,64 @@ def modelo_dt(request):
     datos = [
         {
             "id" : o.id, "mark":o.mark.decript, "descript":o.descript
+        } for o in obj
+    ]
+    
+    context["datos"] = datos
+    return JsonResponse(context,safe=False)
+
+
+class VehiculoList(SinAutorizacion, TemplateView):
+    template_name="ctrl_comb/vehiculo.html"
+    login_url="core:home"
+    permission_required="ctrl_comb.view_vehiculo"
+    
+
+@login_required(login_url="usuarios:login")
+@permission_required("ctrl_comb.view_vehiculo")
+def vehiculo_dt(request):
+    context = {}
+    datos = request.GET
+    
+    draw = int(datos.get("draw"))
+    start = int(datos.get("start"))
+    length = int(datos.get("length"))
+    search = datos.get("search[value]")
+    
+    if request.user.is_superuser:
+        registros = Vehiculo.objects.all()
+    else:
+        registros = Modelo.objects.filter(uc = request.user)
+    
+    if search:
+        registros = registros.filter(
+            Q(modelo__mark__decript__icontains=search) |
+            Q(modelo__descript__icontains=search) |
+            Q(register__icontains=search) |
+            Q(year__icontains=search)
+        )
+        
+    recordsTotal = registros.count()
+    # recordsFiltered = recordsTotal
+    
+    context["draw"] = draw
+    context["recordsTotal"] = recordsTotal
+    context["recordsFiltered"] = recordsTotal
+    
+    reg = registros[start:start + length]
+    paginator = Paginator(reg,length)
+    
+    try:
+        obj = paginator.page(draw).object_list
+    except PageNotAnInteger:
+        obj = paginator.page(draw).object_list
+    except EmptyPage:
+        obj = paginator.page(paginator.num_pages).object_list
+        
+    datos = [
+        {
+            "id" : o.id, "mark":o.modelo.mark.decript, "modelo":o.modelo.descript,
+            "register":o.register, "year":o.year
         } for o in obj
     ]
     

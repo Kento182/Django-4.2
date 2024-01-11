@@ -14,4 +14,7 @@ urlpatterns = [
     path('models/edit-modal/<int:pk>', ModeloEditModal.as_view(), name="modelo_edit_modal"),
     path('models/delete/<int:pk>', ModeloDelete.as_view(), name="modelo_delete"),
     path("models/dt", modelo_dt, name="modelo_dt"),
+    
+    path('vehicles/', VehiculoList.as_view(), name="vehiculo_list"),
+    path('vehicles/dt', vehiculo_dt, name="vehiculo_dt"),
 ]
