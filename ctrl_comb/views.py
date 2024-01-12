@@ -281,3 +281,13 @@ class VehiculoNewModal(SinAutorizacion, MixinSaveUser, CreateView):
     success_url=reverse_lazy("control:vehiculo_list")
     login_url="usuarios:login"
     permission_required="ctrl_comb.add_vehiculo"
+    
+    
+class VehiculoEditModal(SinAutorizacion, MixinSaveUser ,UpdateView):
+    template_name="ctrl_comb/vehiculo_modal.html"
+    model=Vehiculo
+    context_object_name="obj"
+    form_class=VehiculoForm
+    success_url=reverse_lazy("control:vehiculo_list")
+    login_url="usuarios:login"
+    permission_required="ctrl_comb.change_vehiculo"
