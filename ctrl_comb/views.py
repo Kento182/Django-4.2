@@ -235,7 +235,7 @@ def vehiculo_dt(request):
     if request.user.is_superuser:
         registros = Vehiculo.objects.all()
     else:
-        registros = Modelo.objects.filter(uc = request.user)
+        registros = Vehiculo.objects.filter(uc = request.user)
     
     if search:
         registros = registros.filter(
@@ -271,3 +271,13 @@ def vehiculo_dt(request):
     
     context["datos"] = datos
     return JsonResponse(context,safe=False)
+
+
+class VehiculoNewModal(SinAutorizacion, MixinSaveUser, CreateView):
+    template_name="ctrl_comb/vehiculo_modal.html"
+    model=Vehiculo
+    context_object_name="obj"
+    form_class=VehiculoForm
+    success_url=reverse_lazy("control:vehiculo_list")
+    login_url="usuarios:login"
+    permission_required="ctrl_comb.add_vehiculo"

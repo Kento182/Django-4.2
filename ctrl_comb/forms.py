@@ -20,3 +20,9 @@ class ModeloForm(forms.ModelForm):
     class Meta:
         model = Modelo
         fields = ["mark","descript"]
+        
+        
+class VehiculoForm(forms.ModelForm):
+    class Meta:
+        model = Vehiculo
+        fields = ["modelo","register","year"]

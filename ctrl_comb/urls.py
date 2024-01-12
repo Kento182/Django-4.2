@@ -17,4 +17,5 @@ urlpatterns = [
     
     path('vehicles/', VehiculoList.as_view(), name="vehiculo_list"),
     path('vehicles/dt', vehiculo_dt, name="vehiculo_dt"),
+    path('vehicles/new', VehiculoNewModal.as_view(), name="vehiculo_new")
 ]
