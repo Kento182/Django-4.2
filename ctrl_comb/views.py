@@ -291,3 +291,10 @@ class VehiculoEditModal(SinAutorizacion, MixinSaveUser ,UpdateView):
     success_url=reverse_lazy("control:vehiculo_list")
     login_url="usuarios:login"
     permission_required="ctrl_comb.change_vehiculo"
+    
+    
+class VehiculoDelete(DeleteView):
+    template_name="bases/delete.html"
+    model=Vehiculo
+    context_object_name="obj"    
+    success_url=reverse_lazy("control:vehiculo_list")

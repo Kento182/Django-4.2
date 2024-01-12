@@ -19,4 +19,5 @@ urlpatterns = [
     path('vehicles/dt', vehiculo_dt, name="vehiculo_dt"),
     path('vehicles/new', VehiculoNewModal.as_view(), name="vehiculo_new"),
     path('vehicles/edit/<int:pk>', VehiculoEditModal.as_view(), name="vehiculo_edit"),
+    path('vehicles/delete/<int:pk>', VehiculoDelete.as_view(), name="vehiculo_delete"),
 ]
