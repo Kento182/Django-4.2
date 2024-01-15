@@ -298,6 +298,12 @@ class VehiculoEditModal(SinAutorizacion, MixinSaveUser ,UpdateView):
     login_url="usuarios:login"
     permission_required="ctrl_comb.change_vehiculo"
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["marcas"] = Mark.objects.all()
+        context["modelos"] = Modelo.objects.all()
+        return context
+    
     
 class VehiculoDelete(DeleteView):
     template_name="bases/delete.html"
