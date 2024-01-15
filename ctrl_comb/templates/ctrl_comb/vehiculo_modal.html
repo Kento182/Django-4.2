@@ -11,7 +11,29 @@
                 </button>
             </div>
             <div class="modal-body">
-                {{ form|crispy }}
+                {#{ form|crispy }#}                
+                <div class="row">
+                    <div class="col-6">
+                        <select name="mark" id="id_mark" class="select form-select">
+                            <option value="">Selecciona Marca</option>
+                            {% for o in marcas %}
+                                <option value="{{o.id}}">{{o.decript}}</option>
+                            {% endfor %}                                
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <select name="modelo" id="id_modelo" class="select form-select">
+                            <option value="">Selecciona Modelo</option>
+                            {% for o in modelos %}
+                                <option value="{{o.id}}" data-chained="{{o.mark.id}}">{{o.descript}}</option>
+                            {% endfor %}                                
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">{{form.register|as_crispy_field}}</div>
+                    <div class="col-6">{{form.year|as_crispy_field}}</div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-stop-circle"></i> Guardar</button>                
@@ -20,3 +42,10 @@
         </form>
     </div>
 </div>
+
+
+<script>
+    $(function(){
+        $("#id_modelo").chained("#id_mark")
+    })
+</script>

@@ -1,3 +1,4 @@
+from typing import Any
 from django.forms.models import BaseModelForm
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, TemplateView
@@ -282,6 +283,11 @@ class VehiculoNewModal(SinAutorizacion, MixinSaveUser, CreateView):
     login_url="usuarios:login"
     permission_required="ctrl_comb.add_vehiculo"
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["marcas"] = Mark.objects.all()
+        context["modelos"] = Modelo.objects.all()
+        return context
     
 class VehiculoEditModal(SinAutorizacion, MixinSaveUser ,UpdateView):
     template_name="ctrl_comb/vehiculo_modal.html"
