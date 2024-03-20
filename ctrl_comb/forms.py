@@ -25,4 +25,4 @@ class ModeloForm(forms.ModelForm):
 class VehiculoForm(forms.ModelForm):
     class Meta:
         model = Vehiculo
-        fields = ["modelo","register","year"]
+        fields = ["modelo","register","year","tipo","unidad_medida"]
