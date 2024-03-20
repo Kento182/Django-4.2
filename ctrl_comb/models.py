@@ -32,6 +32,25 @@ class Vehiculo(ClaseModelo):
     register = models.CharField(max_length=50, db_column="Matricula Vehículo", help_text="Matricula Vehículo")
     year = models.PositiveSmallIntegerField(help_text="Año del Vehículo")
     
+    TIPO_CHOICES = [
+        ('MOT', 'Motocicleta'),
+        ('CAP', 'Caponera'),
+        ('SUV', 'Camioneta (SUV)'),
+        ('PIK', 'PickUp'),
+        ('SED', 'Sedán'),
+        ('TAX', 'Taxi'),
+        ('MIC', 'Microbus'),
+        ('BUS', 'Autobus'),
+        ('CAM', 'Camion')
+    ]
+    tipo = models.CharField(choices=TIPO_CHOICES, max_length=3, default='SED')
+    
+    class UnidadMedida(models.IntegerChoices):
+        GALONES = 1
+        LITROS = 2
+        
+    unidad_medida = models.IntegerField(choices=UnidadMedida.choices, default=1)
+    
     def __str__(self):
         return self.register
     
