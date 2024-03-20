@@ -51,6 +51,13 @@ class Vehiculo(ClaseModelo):
         
     unidad_medida = models.IntegerField(choices=UnidadMedida.choices, default=1)
     
+    @property
+    def factor(self):
+        f = 1
+        if self.unidad_medida == 2:
+            f = .264172
+        return f
+    
     def __str__(self):
         return self.register
     
